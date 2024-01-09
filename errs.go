@@ -41,6 +41,13 @@ func Errorf(format string, a ...any) *Error {
 	}
 }
 
+func Wrap(err error) *Error {
+	return &Error{
+		err:   err,
+		stack: stacktrace(1, 10),
+	}
+}
+
 func stacktrace(skip int, num int) []byte {
 	var buffer []byte
 
